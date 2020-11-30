@@ -330,3 +330,85 @@ squash模式会将`dev`分支上的提交压缩到一个提交对象中，从git
 
 
 
+### 六、远程操作
+
+使用`git remote` 查看查看远程仓库列表
+
+```bash
+$ git remote
+origin
+```
+
+使用`git remote show <remote>`可以看到某个远程仓库的更多信息，包括仓库的URL及跟踪分支的信息等:
+
+```bash
+$ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/16302010049/GitBranch-.git
+  Push  URL: https://github.com/16302010049/GitBranch-.git
+  HEAD branch: main
+  Remote branches:
+    dev    tracked
+    hotfix tracked
+    main   tracked
+  Local branches configured for 'git pull':
+    dev      merges with remote dev
+    main     merges with remote main
+    new_test merges with remote hotfix
+  Local refs configured for 'git push':
+    dev  pushes to dev  (fast-forwardable)
+    main pushes to main (fast-forwardable)
+```
+
+使用`git remote add <shortname> <url>`添加远程仓库
+
+```bash
+$ git remote add origin https://github.com/16302010049/GitBranch-.git
+$ git remote
+origin
+```
+
+使用`git push <remote> <branch>`推送本地提交
+
+```bash
+$ git push origin main
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 470 bytes | 470.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/16302010049/GitBranch-.git
+   deb9a66..cd6f64c  main -> main
+```
+
+使用`git fetch <remote>`获取远程仓库的数据
+
+```bash
+$ git fetch origin
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 5 (delta 1), reused 5 (delta 1), pack-reused 0
+Unpacking objects: 100% (5/5), done.
+From https://github.com/16302010049/GitBranch-
+   deb9a66..cd6f64c  main       -> origin/main
+```
+
+使用`git pull` 获取并合并远程分支的提交
+
+```bash
+$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/16302010049/GitBranch-
+   cd6f64c..96a7ac3  main       -> origin/main
+Updating cd6f64c..96a7ac3
+Fast-forward
+ b.txt | 1 +
+ 1 file changed, 1 insertion(+)
+```
+
